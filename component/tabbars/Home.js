@@ -1,7 +1,11 @@
 import React from 'react'
-import { View, Text, StyleSheet,Image } from 'react-native'
+import { View, Text, StyleSheet,Image,TouchableHighlight } from 'react-native'
 //导入轮播图组件
 import Swiper from 'react-native-swiper'
+
+//路由组件
+import {Actions} from 'react-native-router-flux'
+
 //轮播图样式
 const styles = StyleSheet.create({
     stretch: {
@@ -66,10 +70,12 @@ export default class Home extends React.Component {
                         <Image style={styles.Icon01} source={require('../../images/menu4.png')}></Image>
                         <Text>留言反馈</Text>
                     </View>
-                    <View style={styles.Icon}>
-                        <Image style={styles.Icon01} source={require('../../images/menu5.png')}></Image>
-                        <Text>热映电影</Text>
-                    </View>
+                    <TouchableHighlight style={styles.Icon} onPress={this.goMovieList} underlayColor='white'>
+                        <View>
+                            <Image style={styles.Icon01} source={require('../../images/menu5.png')}></Image>
+                            <Text style={{textAlign:'center'}}>热映电影</Text>
+                        </View>
+                    </TouchableHighlight>
                     <View style={styles.Icon}>
                         <Image style={styles.Icon01} source={require('../../images/menu6.png')}></Image>
                         <Text>联系我们</Text>
@@ -77,5 +83,10 @@ export default class Home extends React.Component {
                 </View>
             </View>
         );
+    }
+
+    goMovieList = () => {
+        // console.warn('ok')
+        Actions.MovieList()
     }
 }
